@@ -61,8 +61,8 @@ Includes sophisticated interaction logic:
 To update the opening animation, place your image sequence in `public/sequence/`.
 
 - **File Pattern**: `frame_XXXX.png` (4-digit padding, 1-based index).
-  - Example: `frame_0001.png` to `frame_0120.png`.
-- **Frame Count**: Configurable in `components/ScrollyCanvas.tsx` via `const FRAME_COUNT = 120`.
+  - Example: `frame_0001.png` to `frame_0095.png`.
+- **Frame Count**: Configurable in `components/ScrollyCanvas.tsx` via `const FRAME_COUNT = 95`.
 - **Recommended Spec**: 1920x1080 (FHD) JPEG/WebP (~200KB per frame).
 
 ---
