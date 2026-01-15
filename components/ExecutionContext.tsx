@@ -68,8 +68,8 @@ export default function ExecutionContext({ onHighlight, onStateChange, onSelectC
     ];
 
     return (
-        <section className="w-full max-w-[1600px] px-8 py-[30px] flex flex-col gap-12 z-20 relative bg-[#010101]">
-            <div className="w-full h-px bg-[#e8e3d5]/10 mb-8" />
+        <section className="w-full max-w-[1600px] px-8 py-4 md:py-[30px] flex flex-col gap-4 md:gap-12 z-20 relative bg-[#010101]">
+            <div className="w-full h-px bg-[#e8e3d5]/10 mb-4 md:mb-8" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {cards.map((card, idx) => (
