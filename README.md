@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sigil
+
+**An execution sentinel inspired by Rialo’s event-driven architecture.**
+
+Sigil is a conceptual visualization of an autonomous system monitor. It demonstrates a seamless blend of scroll-driven storytelling, complex state management, and strict, minimalist aesthetic principles ("Darkroom" palette).
+
+![Sigil Preview](/public/sequence/frame_0060.png)
+
+## Features
+
+### 🎥 ScrollyCanvas
+A high-performance, scroll-locked image sequence player that renders a cinematic opening on the canvas. optimized for high-DPI displays and smooth framerates using `Framer Motion`.
+
+### ⚡ Execution Context Grid
+A responsive system monitor displaying the four core states of the sentinel:
+- **IDLE**: Awaiting signals.
+- **DETECTING**: Validating conditions.
+- **EXECUTING**: Processing payloads.
+- **INACTIVE**: System dormant.
+
+Includes sophisticated interaction logic:
+- **Gallery Mode**: All states visible by default.
+- **Strict Focus**: Hovering or clicking isolates specific states, dimming the rest.
+- **Context Locking**: Clicking a multi-state flow (e.g., Event Ingress) "locks" the grid to show the relationship between IDLE and DETECTING.
+
+### 📱 Responsive Design
+- **Desktop**: Full-screen grid with mouse-driven interactions.
+- **Mobile**: Focused single-sentinel view with manual state toggles and sequential animations.
+
+## Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animation**: [Framer Motion](https://www.framer.com/motion/)
+- **Language**: TypeScript
 
 ## Getting Started
 
-First, run the development server:
+1.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3.  Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/page.tsx`: Main entry point handling the layout and global state (Gallery vs. Focus modes).
+- `components/ScrollyCanvas.tsx`: The scroll-driven animation engine.
+- `components/ExecutionContext.tsx`: The interactive grid component.
+- `components/Sentinel.tsx`: The SVG representation of the system avatar.
 
-## Learn More
+## Configuration & Assets
 
-To learn more about Next.js, take a look at the following resources:
+### ScrollyCanvas Sequence
+To update the opening animation, place your image sequence in `public/sequence/`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **File Pattern**: `frame_XXXX.png` (4-digit padding, 1-based index).
+  - Example: `frame_0001.png` to `frame_0120.png`.
+- **Frame Count**: Configurable in `components/ScrollyCanvas.tsx` via `const FRAME_COUNT = 120`.
+- **Recommended Spec**: 1920x1080 (FHD) JPEG/WebP (~200KB per frame).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*This is an unofficial concept.*
