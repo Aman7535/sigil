@@ -4,6 +4,7 @@ import { useScroll, useTransform, useMotionValueEvent, motion } from "framer-mot
 import { useEffect, useRef, useState } from "react";
 
 const FRAME_COUNT = 95;
+const ZOOM_LEVEL = 1.0; // Adjust this: 1.1 = 10% zoom in, 0.9 = zoom out
 
 export default function ScrollyCanvas() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -28,9 +29,9 @@ export default function ScrollyCanvas() {
 
         for (let i = 0; i < FRAME_COUNT; i++) {
             const img = new Image();
-            // Sequence is 1-indexed and 4 digits (e.g. frame_0001.png)
+            // Sequence is 1-indexed and 4 digits (e.g. frame_0001.webp)
             const paddedIndex = (i + 1).toString().padStart(4, '0');
-            img.src = `/sequence/frame_${paddedIndex}.png`;
+            img.src = `/sequence/frame_${paddedIndex}.webp`;
             img.onload = () => {
                 loadedCount++;
                 setLoadProgress(Math.round((loadedCount / FRAME_COUNT) * 100));
@@ -67,7 +68,7 @@ export default function ScrollyCanvas() {
 
         // Optimize quality
         ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = "high";
+        ctx.imageSmoothingQuality = "medium";
 
         // Cover logic
         const cvRatio = width / height;
@@ -76,14 +77,14 @@ export default function ScrollyCanvas() {
         let drawWidth, drawHeight, offsetX, offsetY;
 
         if (imgRatio > cvRatio) {
-            drawHeight = height;
-            drawWidth = height * imgRatio;
-            offsetY = 0;
+            drawHeight = height * ZOOM_LEVEL;
+            drawWidth = height * imgRatio * ZOOM_LEVEL;
+            offsetY = (height - drawHeight) / 2;
             offsetX = (width - drawWidth) / 2;
         } else {
-            drawWidth = width;
-            drawHeight = width / imgRatio;
-            offsetX = 0;
+            drawWidth = width * ZOOM_LEVEL;
+            drawHeight = (width / imgRatio) * ZOOM_LEVEL;
+            offsetX = (width - drawWidth) / 2;
             offsetY = (height - drawHeight) / 2;
         }
 
