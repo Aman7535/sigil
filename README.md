@@ -6,7 +6,7 @@
 
 Sigil is a conceptual visualization of an autonomous system monitor. It demonstrates a seamless blend of scroll-driven storytelling, complex state management, and strict, minimalist aesthetic principles ("Darkroom" palette).
 
-![Sigil Preview](/public/sequence/frame_0060.png)
+![Sigil Preview](/public/sequence/frame_060.png)
 
 ## Features
 
