@@ -3,7 +3,7 @@
 import { useScroll, useTransform, useMotionValueEvent, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const FRAME_COUNT = 120;
+const FRAME_COUNT = 95;
 
 export default function ScrollyCanvas() {
     const containerRef = useRef<HTMLDivElement>(null);
