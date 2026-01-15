@@ -10,6 +10,7 @@ export default function ScrollyCanvas() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [images, setImages] = useState<HTMLImageElement[]>([]);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [loadProgress, setLoadProgress] = useState(0);
 
     // Track scroll progress within the container
     const { scrollYProgress } = useScroll({
@@ -17,7 +18,7 @@ export default function ScrollyCanvas() {
         offset: ["start start", "end end"],
     });
 
-    // Map scroll (0 to 1) to frame index (0 to 119)
+    // Map scroll (0 to 1) to frame index
     const currentIndex = useTransform(scrollYProgress, [0, 1], [0, FRAME_COUNT - 1]);
 
     // Preload images
@@ -32,6 +33,7 @@ export default function ScrollyCanvas() {
             img.src = `/sequence/frame_${paddedIndex}.png`;
             img.onload = () => {
                 loadedCount++;
+                setLoadProgress(Math.round((loadedCount / FRAME_COUNT) * 100));
                 if (loadedCount === FRAME_COUNT) {
                     setIsLoaded(true);
                 }
@@ -127,6 +129,31 @@ export default function ScrollyCanvas() {
                     ref={canvasRef}
                     className="w-full h-full object-cover block"
                 />
+
+                {/* Loading State Overlay with Glassmorphism */}
+                {!isLoaded && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-[#010101]/80 backdrop-blur-sm z-[100]">
+                        <div className="relative p-8 rounded-2xl border border-[#e8e3d5]/10 bg-[#e8e3d5]/5 backdrop-blur-md shadow-2xl flex flex-col items-center max-w-sm w-full mx-4">
+                            <div className="font-mono text-sm tracking-[0.2em] uppercase mb-6 text-[#e8e3d5] animate-pulse">
+                                System Initializing
+                            </div>
+
+                            <div className="w-full h-[2px] bg-[#e8e3d5]/10 overflow-hidden relative mb-4">
+                                <motion.div
+                                    className="absolute inset-0 bg-[#e8e3d5]"
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${loadProgress}%` }}
+                                    transition={{ ease: "linear", duration: 0.1 }}
+                                />
+                            </div>
+
+                            <div className="flex justify-between w-full font-mono text-[10px] text-[#e8e3d5]/40 uppercase tracking-wide">
+                                <span>Loading Assets</span>
+                                <span>{loadProgress}%</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {/* Optional Overlays - Minimal execution data */}
                 <motion.div
