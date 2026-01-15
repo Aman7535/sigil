@@ -2,10 +2,12 @@
 
 **An execution sentinel inspired by Rialo’s event-driven architecture.** 
 
-## check here https://sigil-lime.vercel.app/
+## Live demo: https://sigil-lime.vercel.app/
 
-Sigil is a conceptual visualization of an autonomous system monitor. It demonstrates a seamless blend of scroll-driven storytelling, complex state management, and strict, minimalist aesthetic principles ("Darkroom" palette).
+Sigil is a conceptual visualization of an autonomous system monitor.  
+It explores how event-driven execution can be represented as a stateful sentinel rather than a character.
 
+The project combines scroll-driven system visualization, explicit state management, and a strict, minimal aesthetic (“Darkroom” palette) to communicate execution behavior with clarity and restraint.
 ![Sigil Preview](/public/sequence/frame_0060.webp)
 
 ## Features
@@ -69,4 +71,5 @@ To update the opening animation, place your image sequence in `public/sequence/`
 
 ---
 
-*This is an unofficial concept.*
+*Sigil is an unofficial community concept inspired by Rialo’s event-driven execution model.
+It is not affiliated with or endorsed by the Rialo team.*
